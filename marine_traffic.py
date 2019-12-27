@@ -1,6 +1,5 @@
 import os
 from pytz import timezone
-from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 from marinetrafficapi import MarineTrafficApi
@@ -11,7 +10,7 @@ LAST_HOUR = 60
 
 def get_last_port_call(ship_id):
     api = MarineTrafficApi(api_key=os.getenv('MARINE_TRAFFIC_API_KEY'))
-    result = api.port_calls(imo=ship_id, time_span=LAST_HOUR, movetype=0)
+    result = api.port_calls(mmsi=ship_id, time_span=LAST_HOUR, movetype=0)
     if result.models:
         return result.models[0]
     return None
